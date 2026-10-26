@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTask - Professional Task Management Dashboard</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>ProTask</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="active">Dashboard</a>
+            </nav>
+        </aside>
+
+  
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Task Management Dashboard</h1>
+            </header>
+
+
+            <section class="analytics-grid">
+                <div class="card stat-card">
+                    <h3>Total Tasks</h3>
+                    <p id="statTotal">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Completed</h3>
+                    <p id="statCompleted">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>In Progress</h3>
+                    <p id="statInProgress">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>To Do</h3>
+                    <p id="statPending">0</p>
+                </div>
+                <div class="card stat-card danger">
+                    <h3>Overdue</h3>
+                    <p id="statOverdue">0</p>
+                </div>
+                <div class="card stat-card highlight">
+                    <h3>Completion %</h3>
+                    <p id="statPercentage">0%</p>
+                </div>
+            </section>
+
+            <div class="content-grid">
+
+                <section class="card form-section">
+                    <h2>Create New Task</h2>
+                    <form id="taskForm" novalidate>
+                        <input type="hidden" id="taskId">
+                        <div class="form-group">
+                            <label for="taskTitle">Task Title *</label>
+                            <input type="text" id="taskTitle" required placeholder="Enter task title">
+                            <small class="error-msg" id="titleError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taskDescription">Description</label>
+                            <textarea id="taskDescription" rows="3" placeholder="Enter task description"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="taskPriority">Priority *</label>
+                                <select id="taskPriority">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium" selected>Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="taskStatus">Status *</label>
+                                <select id="taskStatus">
+                                    <option value="To Do" selected>To Do</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date *</label>
+                            <input type="date" id="taskDueDate" required>
+                            <small class="error-msg" id="dueDateError"></small>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Add Task</button>
+                            <button type="button" id="cancelBtn" class="btn btn-secondary" style="display: none;">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+
+  
+                <section class="card list-section">
+                    <div class="controls-header">
+                        <h2>Tasks List</h2>
+                        <div class="controls-grid">
+                            <input type="text" id="searchInput" placeholder="Search title...">
+                            
+                            <select id="filterStatus">
+                                <option value="All">All Statuses</option>
+                                <option value="To Do">To Do</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+
+                            <select id="filterPriority">
+                                <option value="All">All Priorities</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+
+                            <select id="sortBy">
+                                <option value="createdAt">Created Date</option>
+                                <option value="dueDate">Due Date</option>
+                                <option value="priority">Priority</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div id="tasksContainer" class="tasks-container"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script src="JS/Service.js"></script>
+    <script src="JS/Ui.js"></script>
+    <script src="JS/App.js"></script>
+</body>
+</html>
